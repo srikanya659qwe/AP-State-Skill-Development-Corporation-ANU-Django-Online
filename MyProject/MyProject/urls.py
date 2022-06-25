@@ -36,6 +36,16 @@ urlpatterns = [
 
     path('inline/',views.inline,name='inline'),
     path('internal/',views.internal,name='internal'),
-    path('external/',views.external,name='external')
+    path('external/',views.external,name='external'),
+
+    path('boot/',views.boot,name='boot'),
+    path('offline/',views.offline,name='offline'),
+
+    path('get/',views.get,name='get'),
+
+    path('insert/',views.insert,name='insert'),
+    path('read/',views.read,name='read'),
+    path('update/<int:id>/',views.update,name='update'),
+    path('delete/<int:id>/',views.delete,name='delete')
 
 ]

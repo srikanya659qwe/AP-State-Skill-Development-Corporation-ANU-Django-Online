@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>data page</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+	<!-- <h2>Hai welcome to online bootstrap</h2> -->
+	<div class="container">
+		<div class="card col-md-6 mt-3 mx-auto bg-secondary">
+			<div class="card-body">
+				<h3 class="text-warning">Data Form</h3>
+				<form method="POST">
+					{% csrf_token %}
+					<input type="text" name="uname" placeholder="Enter your username" class="form-control my-4">
+
+					<input type="number" name="mbl" placeholder="Enter your mobile number" class="form-control my-4">
+
+					<input type="email" name="email" placeholder="Enter your email" class="form-control my-4">
+
+					<input type="password" name="psw" placeholder="Enter your password" class="form-control my-4">
+
+					<input type="password" name="cpsw" placeholder="Enter your confirm password" class="form-control my-4">
+
+					<label for="birthtime">DOB:</label>
+						<input type="date" name="dob" class="form-control my-4">
+
+					<button class="btn btn-success" class="form-control">Register</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

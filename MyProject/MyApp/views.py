@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from MyApp.models import Student
 
 # Create your views here.
 
@@ -41,3 +42,61 @@ def internal(request):
 
 def external(request):
 	return render(request,'MyApp/external.html')
+
+def boot(request):
+	return render(request,'MyApp/boot.html')
+
+def offline(request):
+	return render(request,'MyApp/offline.html')
+
+def get(request):
+	if request.method=="POST":
+		na=request.POST['uname']
+		mb=request.POST['mbl']
+		em=request.POST['email']
+		ps=request.POST['psw']
+		cps=request.POST['cpsw']
+		do=request.POST['dob']
+
+		return render(request,'MyApp/details.html',{'us':na,'m':mb,'e':em,'p':ps,'cp':cps,'d':do})
+
+	return render(request,'MyApp/get.html')
+
+def insert(request):
+	if request.method=="POST":
+		na=request.POST['name']
+		roll=request.POST['rollnum']
+		age=request.POST['age']
+		mbl=request.POST['mbl']
+		em=request.POST['email']
+		add=request.POST['addr']
+
+		Student.objects.create(name=na,rollnum=roll,age=age,mobile=mbl,
+			email=em,address=add)
+		return redirect('/read')
+	return render(request,'MyApp/insert.html')
+
+
+def read(request):
+	data=Student.objects.all()
+	return render(request,'MyApp/read.html',{'data':data})
+
+def update(request,id):
+	data=Student.objects.get(id=id)
+	if request.method=="POST":
+		data.name=request.POST['name']
+		data.rollnum=request.POST['rollnum']
+		data.age=request.POST['age']
+		data.mobile=request.POST['mbl']
+		data.email=request.POST['email']
+		data.address=request.POST['addr']
+		data.save()
+		return redirect('/read')
+	return render(request,'MyApp/update.html',{'data':data})
+
+def delete(request,id):
+	ob=Student.objects.get(id=id)
+	if request.method=="POST":
+		ob.delete()
+		return redirect('/read')
+	return render(request,'MyApp/delete.html',{'info':ob})

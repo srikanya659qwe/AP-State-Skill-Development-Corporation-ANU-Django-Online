@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>display data </title>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+	<div class="container mt-6 bg-info">
+		<h2 class="alert alert-text text-center bg-success">Display Data</h2>
+		<a href="{% url 'insert' %}" class="btn btn-secondary">Register</a>
+		<table class="table table-bordered bg-info">
+			<thead>
+				<tr class="bg-primary">
+					<th>S.NO</th>
+					<th>Name</th>
+					<th>Rollnumber</th>
+					<th>Age</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Address</th>
+					<th colspan="2">Operations</th>
+				</tr>
+				<tbody>
+					{% for i in data %}
+					<tr>
+						<td>{{i.id}}</td>
+						<td>{{i.name}}</td>
+						<td>{{i.rollnum}}</td>
+						<td>{{i.age}}</td>
+						<td>{{i.mobile}}</td>
+						<td>{{i.email}}</td>
+						<td>{{i.address}}</td>
+						<td><a href="{% url 'update' i.id %}" class="btn btn-warning">Update</td>
+						<td><a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

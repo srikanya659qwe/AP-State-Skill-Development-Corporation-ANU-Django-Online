@@ -4,6 +4,14 @@
 <head>
 	<title>External page</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/sample.css'%}">
+
+	<script type="text/javascript" src="{% static 'js/sample.js' %}"></script>
+
+	<style type="text/css">
+		body{
+			background-image: url({% static 'images/card12.jpg' %});
+		}
+	</style>
 </head>
 <body>
 	<form>
@@ -13,5 +21,6 @@
 
 		<button>Login</button>
 	</form>
+	<img src="{% static 'images/apssdc.jpg' %}">
 </body>
 </html>
